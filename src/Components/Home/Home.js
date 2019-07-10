@@ -29,6 +29,33 @@ export default class Home extends Component {
         console.log(this.state)
     }
 
+    async getCarrosAdmin() {
+        var carros = [];
+        var idUsr = await this.state.usuarioFire.id;
+        console.log('idUsr: ', idUsr);
+        if (idUsr != null) {
+            const carrosRef = firebase.firestore().collection('carros');
+            carrosRef.where('alugado', '==', true)
+                .get()
+                .then(snapshot => {
+                    snapshot.forEach(doc => {
+                        let id = doc.id;
+                        let data = doc.data();
+                        var carroVal = {
+                            'id': id,
+                            'data': data,
+                        }
+                        carros.push(carroVal);
+                    });
+                    this.setState({
+                        carrosAlugados: carros,
+                        isLoading: false
+                    });
+                });
+        }
+
+    }
+
     async getCarrosByUsuario() {
         var carros = [];
         var idUsr = await this.state.usuarioFire.id;
@@ -76,7 +103,11 @@ export default class Home extends Component {
                         userData = usrVal;
                     })
                     this.setState({ usuarioFire: userData });
-                    this.getCarrosByUsuario();
+                    if(this.state.usuarioFire.data.admin){
+                        this.getCarrosAdmin();
+                    }else{
+                        this.getCarrosByUsuario();
+                    }
                 });
             }
         });
@@ -135,7 +166,6 @@ export default class Home extends Component {
     renderCarrosAlugados() {
         return (
             <div>
-
                 <h3>Seus carros alugados:</h3>
                 <table className="table">
                     <thead>
@@ -162,8 +192,9 @@ export default class Home extends Component {
         } else {
             if (this.state.usuarioFire.data.admin) {
                 return (
-                    
-                    <div>{this.renderWelcome()}
+                    <div className="container">
+                        {this.renderWelcome()}
+                        {this.renderCarrosAlugados()}
                     </div>
                 )
             } else {

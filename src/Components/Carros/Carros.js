@@ -19,7 +19,7 @@ export default class Carros extends Component {
     }
     componentDidMount() {
         this.setState({ loading: true })
-        this.getCarrosDisponiveis()
+        this.getUsuario();
     }
 
     getUsuario() {
@@ -44,15 +44,15 @@ export default class Carros extends Component {
                     if (perfil.data.admin) {
                         this.setState({
                             usrData: perfil,
-                            loading: false,
                             isAdmin: true
                         });
+                        this.getCarrosDisponiveisAdmin();
                     } else {
                         this.setState({
                             usrData: perfil,
-                            loading: false,
                             isAdmin: false,
                         });
+                        this.getCarrosDisponiveis();
                     }
 
                 });
@@ -61,6 +61,31 @@ export default class Carros extends Component {
     }
 
     getCarrosDisponiveis() {
+        console.log("É USUÁRIO");
+        
+        var carros = [];
+        const carrosRef = firebase.firestore().collection('carros');
+        carrosRef.orderBy('alugado').orderBy('dataLiberado').where('visivel', '==', true).get().then((snapshot) => {
+            snapshot.forEach(doc => {
+                let id = doc.id;
+                let data = doc.data();
+                var carroVal = {
+                    'id': id,
+                    'data': data
+                }
+                carros.push(carroVal);
+            });
+            this.setState({
+                data: carros,
+                loading: false,
+            })
+        }
+        );
+    }
+
+    getCarrosDisponiveisAdmin() {
+        console.log("É ADMIN!");
+        
         var carros = [];
         const carrosRef = firebase.firestore().collection('carros');
         carrosRef.orderBy('alugado').orderBy('dataLiberado').get().then((snapshot) => {
@@ -75,10 +100,10 @@ export default class Carros extends Component {
             });
             this.setState({
                 data: carros,
+                loading: false,
             })
         }
         );
-        this.getUsuario();
     }
 
     alugaCarro(carroId) {
@@ -208,7 +233,8 @@ export default class Carros extends Component {
                             (<td><button onClick={() => {}} className="btn btn-danger btn-default-width" disabled>Alugado</button></td>)
 
                         :
-                        (<td><button onClick={() => { this.alugaCarro(carro.id) }} className="btn btn-primary btn-default-width" >Alugar</button></td>)
+                        (                    <td><Link to={`carros/${carro.id}`}><button className="btn btn-primary btn-default-width" >Alugar</button></Link></td>
+                        )
                     }
 
                 </tr>
