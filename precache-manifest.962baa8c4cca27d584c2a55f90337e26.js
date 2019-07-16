@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9c07f5a36e42b34c8f0665cf01582323",
+    "revision": "3ebe029f4a83f4bf10c6bacdb6dbe0f1",
     "url": "/douglaswender/alugacar/index.html"
   },
   {
-    "revision": "a368e07d9cd029abd097",
-    "url": "/douglaswender/alugacar/static/js/2.1938f4d0.chunk.js"
+    "revision": "3c301104039c0032e98b",
+    "url": "/douglaswender/alugacar/static/js/2.37e85e00.chunk.js"
   },
   {
     "revision": "ee882bbb989d208aa51c",

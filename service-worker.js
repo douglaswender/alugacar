@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/douglaswender/alugacar/precache-manifest.8da778cba832596b69bcf88a75daaf07.js"
+  "/douglaswender/alugacar/precache-manifest.962baa8c4cca27d584c2a55f90337e26.js"
 );
 
 self.addEventListener('message', (event) => {
