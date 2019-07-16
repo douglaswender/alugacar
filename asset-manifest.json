@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/douglaswender/alugacar/static/js/main.a6dea099.chunk.js",
+    "main.js.map": "/douglaswender/alugacar/static/js/main.a6dea099.chunk.js.map",
+    "runtime~main.js": "/douglaswender/alugacar/static/js/runtime~main.42c09f3d.js",
+    "runtime~main.js.map": "/douglaswender/alugacar/static/js/runtime~main.42c09f3d.js.map",
+    "static/js/2.1938f4d0.chunk.js": "/douglaswender/alugacar/static/js/2.1938f4d0.chunk.js",
+    "static/js/2.1938f4d0.chunk.js.map": "/douglaswender/alugacar/static/js/2.1938f4d0.chunk.js.map",
+    "index.html": "/douglaswender/alugacar/index.html",
+    "precache-manifest.8da778cba832596b69bcf88a75daaf07.js": "/douglaswender/alugacar/precache-manifest.8da778cba832596b69bcf88a75daaf07.js",
+    "service-worker.js": "/douglaswender/alugacar/service-worker.js"
+  }
+}
